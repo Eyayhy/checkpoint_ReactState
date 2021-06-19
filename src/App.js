@@ -2,28 +2,28 @@ import logo from './logo.svg';
 import './App.css';
 import React from "react";
 import useToggle from "./useToggle.js";
-import Clock from "./Clock";
-import Profile from './profile/Profile';
-import img from './images/profile.jpg';
+import Timer from "./Timer";
+
+import img from './profile.jpg';
 
 class App extends React.Component {
 
-
-
-
-
   state = {
+
+    Person:{
     fullName: "Eya Yahyaoui",
     bio: "I'm a Software Enginner in a Web agency",
-    imgSrc: {img},
+    imgSrc: "./profile.jpg",
     profession: "Software Enginner",
-   
+    
+
+    },
+
+    show: true,
   };
 
 
-  state = {
-    show: true,
-  }
+ 
 
   toggle = () => this.setState((currentState) => ({show: !currentState.show}));
   render() {
@@ -33,21 +33,29 @@ class App extends React.Component {
     return (
 
       <>
-       <div className="Profile">
+      
 
-        <h1>{this.state.fullName}</h1>
-        <h1>{this.state.bio}</h1>
+      
+			  <button onClick={this.toggle}>{this.state.show ? 'Show my Profile' : 'Hide my Profile '}</button>    
+        {this.state.show && 
+        <>
+         
+         <img src={this.state.Person.imgSrc} style={{borderRadius:'50%', width:'20%',height:'20%',float:'left',padding:'30px'}}/>
+         <div className="profile">
+         <h3 style={{fontWeight:400,color:'#282c34ab'}}> <span style={{color:'#c32c71'}}>FullName :</span> {this.state.Person.fullName} </h3>
+         <h3 style={{fontWeight:400,color:'#282c34ab'}}><span style={{color:'#c32c71'}}>Profession: </span> {this.state.Person.profession}</h3>
+         <h3 style={{fontWeight:400,color:'#282c34ab'}}><span style={{color:'#c32c71'}}> Bio: </span>{this.state.Person.bio}</h3>
+         </div>
+         
+         
      
-        <h1>{this.state.profession}</h1>
-
-       </div>
 
 
-       <div>
-			  <button onClick={this.toggle}>toggle: {this.state.show ? 'show' : 'hide'}</button>    
-        {this.state.show && <div><Profile src={img}/></div>}
-		  </div>
-      <Clock/>
+        </>
+        
+        }
+		 
+      <Timer/>
      </>
     );
   }

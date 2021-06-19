@@ -1,22 +1,22 @@
 import React from "react";
 
 
-class Clock extends React.Component {
+class Timer extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {date: new Date()};
+      this.state = {
+        date: new Date()
+      };
     }
   
     componentDidMount() {
       this.timerID = setInterval(
         () => this.tick(),
-        1000
+       2000
       );
     }
   
-    componentWillUnmount() {
-      clearInterval(this.timerID);
-    }
+ 
   
     tick() {
       this.setState({
@@ -28,10 +28,10 @@ class Clock extends React.Component {
       return (
         <div>
       
-          <h2>The time interval since the last component was mounted is {this.state.date.toLocaleTimeString()}.</h2>
+          <h4 style={{textAlign:'center',fontWeigh:'600'}}>The time interval since the last component was mounted is {this.state.date.toLocaleTimeString()}</h4>
         </div>
       );
     }
   }
 
-  export default Clock;
+  export default Timer;
